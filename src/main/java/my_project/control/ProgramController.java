@@ -1,8 +1,10 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import my_project.model.StackRectangle;
-import my_project.view.VisualStack;
+import KAGO_framework.model.abitur.datenstrukturen.Stack;
+import my_project.model.StackBall;
+import my_project.model.VisualStack;
+import my_project.view.InputManager;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -15,6 +17,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private VisualStack<StackBall> ballStack;
 
     /**
      * Konstruktor
@@ -32,12 +35,19 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        var s = new VisualStack<StackRectangle>(10, 10, 100, 100);
-        s.push(new StackRectangle());
-
-        viewController.draw(s);
+        ballStack = new VisualStack<>(viewController);
+        StackBall ball= new StackBall(50,50,20);
+        new InputManager(this,viewController);
     }
 
+    public void addBallToVisual(){
+        StackBall newBall = new StackBall(50,50,20);
+        ballStack.pushInVisual(newBall);
+    }
+
+    public void deleteBallFromVisual(){
+        ballStack.pop();
+    }
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
