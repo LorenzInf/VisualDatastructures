@@ -22,5 +22,17 @@ public class StackBall extends GraphicalObject implements Animated {
     }
 
     @Override
-    public void update(double dt){}
+    public void update(double dt){
+
+    }
+
+    public void comeIn(){
+        //Ball entscheidet wie er rein kommt, aber comeIn in VisualStack
+
+    }
+
+    public void goOut(){
+        //Ball entscheidet wie er raus geht, aber MEthode wird in VisualStack aufgerufen
+    }
+
 }

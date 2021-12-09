@@ -10,7 +10,6 @@ import javax.swing.text.View;
 
 public class VisualStack<T extends GraphicalObject & Animated> extends GraphicalObject{
 
-    // private int direction; // 0 = up, 1 = right, 2 = down, 3 = left
     private Stack<T> stack;
     private ViewController viewController;
     private int counter;
