@@ -3,62 +3,60 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.abitur.datenstrukturen.Stack;
-import KAGO_framework.view.DrawTool;
-import my_project.view.Animated;
 
-import javax.swing.text.View;
+public class VisualStack<T extends GraphicalObject & VisualStack.Animated> extends GraphicalObject{
 
-public class VisualStack<T extends GraphicalObject & Animated> extends GraphicalObject{
+    public interface Animated {
+
+        void comeIn();
+        int getStartHeight();
+        void setStartHeight(int startHeight);
+
+    }
 
     private Stack<T> stack;
     private ViewController viewController;
     private int counter;
 
     public VisualStack(ViewController viewController){
-        counter = 0;
+        counter = 1;
         stack = new Stack<>();
         this.viewController = viewController;
     }
 
+    /**
+     * Die Methode pushInVisual() ist ziemlich ähnlich zu der Methode push() von der Datenstruktur Stack.
+     * Es wird geprüft, ob das Objekt, welches hinzugefügt werden soll (@param contentType) null ist, wenn nicht, dann wird es:
+     * in den Stack getan,
+     * x in Abhängikeit von der Anzahl der Objekte gesetzt (counter am Anfang = 1, damit es nicht bei x= 0 gespawnt wird),
+     * y da gesetzt, wo es anfangen soll runterzukommen,
+     * gezeichnet + der counter um 1 erhöht,
+     * Methode comeIn() aufgerufen, die optional was machen kann
+     */
     public void pushInVisual(T contentType) {
-        /*if (contentType != null) {
-            if (stack.isEmpty()) {
-                contentType.setX(radius * 2 + 5);
-                contentType.setY(radius * 2 + 30);
-                stack.push(contentType);
-            } else {
-                contentType.setX(counter * (radius * 2 + 5));
-                contentType.setY(radius * 2 + 30);
-                stack.push(contentType);
-            }
-            viewController.draw(contentType);
-        }
-        counter++; */
-
-        // Ich weiß nicht welche Version besser ist, also lasse ich beide
         if (contentType != null) {
             stack.push(contentType);
-            contentType.setX(counter * (radius * 2 + 5));
-            contentType.setY(radius * 2 + 30);
+            contentType.setX(counter * (contentType.getRadius()*2));
+            contentType.setStartHeight(100);
+            contentType.setY(contentType.getStartHeight());
             viewController.draw(contentType);
             counter++;
+            contentType.comeIn();
         }
     }
 
-    public void pop(){
+    /**
+     * Die Methode popVisual ist ähnlich zu pop() in Stack.
+     * Es wird erst geprüft, ob stack leer ist, wenn ja, dann passiert nichts, sonst:
+     * wird die "oberste" Zeichnung entfernt,
+     * wird das oberste Objekt von Stack entfernt
+     * und der counter -1 gerechnet
+     */
+    public void popVisual(){
         if(!stack.isEmpty()){
             viewController.removeDrawable(stack.top());
             stack.pop();
             counter--;
-            // Alles bewegen
-            Stack<T> temp = new Stack<>();
-            while(!stack.isEmpty()){
-                stack.top().setX(counter * (radius*2+5));
-                temp.push(stack.top());
-                stack.pop();
-            }
-            stack = temp;
         }
     }
-
 }

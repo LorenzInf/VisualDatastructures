@@ -2,28 +2,33 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.view.Animated;
 
 
-public class StackBall extends GraphicalObject implements Animated {
+public class StackBall extends GraphicalObject implements VisualStack.Animated {
 
-    private VisualStack<StackBall> visualStack;
+    private boolean arrived;
+    private int startHeight;
 
-    public StackBall(int x, int y,int radius){
-        this.x = x;
-        this.y = y;
+
+    public StackBall(int radius){
         this.radius = radius;
+        arrived = false;
     }
 
     @Override
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(0,0,128,255);
-        drawTool.drawFilledRectangle(x,y,width,height);
+        drawTool.drawFilledCircle(x,y,radius);
     }
 
     @Override
     public void update(double dt){
-
+        if(!arrived){
+            y = y + 50*dt;
+            if(y >= 250){
+                arrived = true;
+            }
+        }
     }
 
     public void comeIn(){
@@ -31,8 +36,11 @@ public class StackBall extends GraphicalObject implements Animated {
 
     }
 
-    public void goOut(){
-        //Ball entscheidet wie er raus geht, aber MEthode wird in VisualStack aufgerufen
+    public int getStartHeight() {
+        return startHeight;
     }
 
+    public void setStartHeight(int startHeight){
+        this.startHeight = startHeight;
+    }
 }

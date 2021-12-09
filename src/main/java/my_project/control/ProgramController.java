@@ -28,6 +28,8 @@ public class ProgramController {
      */
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
+        ballStack = new VisualStack<>(viewController);
+        new InputManager(this,viewController);
     }
 
     /**
@@ -35,19 +37,17 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        ballStack = new VisualStack<>(viewController);
-        StackBall ball= new StackBall(50,50,20);
-        new InputManager(this,viewController);
     }
 
     public void addBallToVisual(){
-        StackBall newBall = new StackBall(50,50,20);
+        StackBall newBall = new StackBall(20);
         ballStack.pushInVisual(newBall);
     }
 
     public void deleteBallFromVisual(){
-        ballStack.pop();
+        ballStack.popVisual();
     }
+
     /**
      * Aufruf mit jeder Frame
      * @param dt Zeit seit letzter Frame
