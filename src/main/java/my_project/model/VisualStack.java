@@ -26,25 +26,11 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
      * Die Methode pushInVisual() ist ziemlich ähnlich zu der Methode push() von der Datenstruktur Stack.
      * Es wird geprüft, ob das Objekt, welches hinzugefügt werden soll (@param contentType) null ist, wenn nicht, dann wird es:
      * in den Stack getan,
-     * comeIn() aufgerufen,
+     * Methode comeIn() aufgerufen, die optional was machen kann,
      * x-Koordinate in abhängigkeit von counter gesetzt
-     * gezeichnet + der counter um 1 erhöht,
-     * Methode comeIn() aufgerufen, die optional was machen kann
+     * gezeichnet + der counter um 1 erhöht
      */
     public void pushInVisual(T contentType) {
-        // Ich glaube das ist falsch, bin mir aber nicht sicher
-        /*if (contentType != null) {
-            stack.push(contentType);
-            contentType.setX(counter * (contentType.getRadius()*2));
-            contentType.setStartHeight(100);
-            contentType.setY(contentType.getStartHeight());
-            viewController.draw(contentType);
-            counter++;
-            contentType.comeIn();
-        } */
-
-        //PROBLEM: Ich will eigentlich counter in der comeIn Methode haben und das alles darüber machen, aber es funktioniert dann nie, weil der counter nicht erhöht wird.
-        // Ich glaube das ist richtig, bin mir aber nicht sicher
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
