@@ -34,7 +34,7 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
-            contentType.setX(counter * (contentType.getRadius()*2));
+            //contentType.setX(counter * (contentType.getRadius()*2));
             viewController.draw(contentType);
             counter++;
         }
