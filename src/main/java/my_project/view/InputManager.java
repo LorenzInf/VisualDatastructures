@@ -28,8 +28,15 @@ public class InputManager extends InteractiveGraphicalObject {
     }
 
     public void keyReleased(int key){
+
+        if (key == KeyEvent.VK_SPACE) programController.addRectangle();
+        if (key == KeyEvent.VK_BACK_SPACE) programController.deleteRectangle();
+
+        /*
         if (key == KeyEvent.VK_SPACE) programController.addBallToVisual();
         if (key == KeyEvent.VK_BACK_SPACE) programController.deleteBallFromVisual();
+*/
+
     }
 
     @Override

@@ -45,12 +45,28 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
 
         //PROBLEM: Ich will eigentlich counter in der comeIn Methode haben und das alles darüber machen, aber es funktioniert dann nie, weil der counter nicht erhöht wird.
         // Ich glaube das ist richtig, bin mir aber nicht sicher
+        /*
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
             contentType.setX(counter * (contentType.getRadius()*2));
             viewController.draw(contentType);
             counter++;
+        } */
+
+        if (contentType != null) {
+            stack.push(contentType);
+            contentType.comeIn();
+            if(counter >= 12) {
+                counter = 1;
+                contentType.setX(20);
+                System.out.println("HAH");
+            }else {
+                contentType.setX(counter * contentType.getWidth());
+            }
+            viewController.draw(contentType);
+            counter++;
+            System.out.println(counter);
         }
     }
 

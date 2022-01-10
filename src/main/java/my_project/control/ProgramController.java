@@ -2,6 +2,8 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.abitur.datenstrukturen.Stack;
+import my_project.model.Bar;
+import my_project.model.BarField;
 import my_project.model.StackBall;
 import my_project.model.VisualStack;
 import my_project.view.InputManager;
@@ -18,6 +20,8 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private VisualStack<StackBall> ballStack;
+    private VisualStack<Bar> pointBarStack;
+    private BarField field;
 
     /**
      * Konstruktor
@@ -29,6 +33,7 @@ public class ProgramController {
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
         ballStack = new VisualStack<>(viewController);
+        pointBarStack = new VisualStack<>(viewController);
         new InputManager(this,viewController);
     }
 
@@ -37,16 +42,31 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
+        BarField field = new BarField(viewController);
     }
+
+    public void addRectangle(){
+        Bar newRec = new Bar(100,20);
+        pointBarStack.pushInVisual(newRec);
+    }
+
+    public void deleteRectangle(){
+        pointBarStack.popVisual();
+    }
+
 
     public void addBallToVisual(){
         StackBall newBall = new StackBall(20);
         ballStack.pushInVisual(newBall);
+
+
     }
 
     public void deleteBallFromVisual(){
         ballStack.popVisual();
     }
+
+
 
     /**
      * Aufruf mit jeder Frame
