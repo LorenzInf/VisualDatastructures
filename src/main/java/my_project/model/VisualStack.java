@@ -57,13 +57,7 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
-            if(counter >= 12) {
-                counter = 1;
-                contentType.setX(20);
-                System.out.println("HAH");
-            }else {
-                contentType.setX(counter * contentType.getWidth());
-            }
+            contentType.setX(counter * contentType.getWidth());
             viewController.draw(contentType);
             counter++;
             System.out.println(counter);
@@ -85,5 +79,13 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
             stack.pop();
             counter--;
         }
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }

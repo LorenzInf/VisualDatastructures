@@ -46,8 +46,16 @@ public class ProgramController {
     }
 
     public void addRectangle(){
-        Bar newRec = new Bar(100,20);
-        pointBarStack.pushInVisual(newRec);
+        if(pointBarStack.getCounter() >= 12){
+            Bar newRec = new Bar(100,20);
+            pointBarStack.pushInVisual(newRec);
+            newRec.setX(100);
+            System.out.println("HAH");
+            pointBarStack.setCounter(1);
+        }else{
+            Bar newRec = new Bar(100,20);
+            pointBarStack.pushInVisual(newRec);
+        }
     }
 
     public void deleteRectangle(){
