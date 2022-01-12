@@ -33,7 +33,7 @@ public class StackBall extends GraphicalObject implements VisualStack.Animated {
 
     public void comeIn(){
         //Ball entscheidet wie er rein kommt, aber comeIn in VisualStack
-        startHeight = 100;
+        startHeight = 200;
         y = startHeight;
     }
 
