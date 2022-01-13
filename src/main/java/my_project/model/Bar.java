@@ -8,7 +8,7 @@ public class Bar extends GraphicalObject implements VisualStack.Animated{
 
     private int r,g,b;
 
-    public Bar(double x, double width) {
+    public Bar(double width) {
         this.x = x;
         this.width = width;
         this.r = 255;
@@ -23,17 +23,16 @@ public class Bar extends GraphicalObject implements VisualStack.Animated{
     }
 
     public void update(double dt){
-        if(x >= 220){
-            setX(20);
-            r = (int) (Math.random()*255);
-            g = (int) (Math.random()*255);
-            b = (int) (Math.random()*255);
-        }
+
     }
 
     public void comeIn(){
         y = 100;
-        setX(getX()+20);
+        if(x >= 200){
+            r = (int) (Math.random()*255);
+            g = (int) (Math.random()*255);
+            b = (int) (Math.random()*255);
+        }
     }
 
     public void goOut(){
@@ -46,5 +45,21 @@ public class Bar extends GraphicalObject implements VisualStack.Animated{
 
     public int getG(){
         return g;
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
     }
 }

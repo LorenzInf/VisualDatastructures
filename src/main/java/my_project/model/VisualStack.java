@@ -32,35 +32,12 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
      * Methode comeIn() aufgerufen, die optional was machen kann
      */
     public void pushInVisual(T contentType) {
-        // Ich glaube das ist falsch, bin mir aber nicht sicher
-        /*if (contentType != null) {
-            stack.push(contentType);
-            contentType.setX(counter * (contentType.getRadius()*2));
-            contentType.setStartHeight(100);
-            contentType.setY(contentType.getStartHeight());
-            viewController.draw(contentType);
-            counter++;
-            contentType.comeIn();
-        } */
-
-        //PROBLEM: Ich will eigentlich counter in der comeIn Methode haben und das alles darüber machen, aber es funktioniert dann nie, weil der counter nicht erhöht wird.
-        // Ich glaube das ist richtig, bin mir aber nicht sicher
-        /*
-        if (contentType != null) {
-            stack.push(contentType);
-            contentType.comeIn();
-            contentType.setX(counter * (contentType.getRadius()*2));
-            viewController.draw(contentType);
-            counter++;
-        } */
-
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
             contentType.setX(counter * contentType.getWidth());
             viewController.draw(contentType);
             counter++;
-            System.out.println(counter);
         }
     }
 

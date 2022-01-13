@@ -46,14 +46,17 @@ public class ProgramController {
     }
 
     public void addRectangle(){
-        if(pointBarStack.getCounter() >= 12){
-            Bar newRec = new Bar(100,20);
-            pointBarStack.pushInVisual(newRec);
-            newRec.setX(100);
-            System.out.println("HAH");
+        //TODO Stack immer wieder abbauen und dann wieder aufbauen, dann das unterste Objekte nehmen und Farbe verändern
+        if(pointBarStack.getCounter() == 11){
             pointBarStack.setCounter(1);
+            Bar newRec = new Bar(20);
+            pointBarStack.pushInVisual(newRec);
+            newRec.setR((int) (Math.random()*255));
+            newRec.setG((int) (Math.random()*255));
+            newRec.setB((int) (Math.random()*255));
+            System.out.println("Probe");
         }else{
-            Bar newRec = new Bar(100,20);
+            Bar newRec = new Bar(20);
             pointBarStack.pushInVisual(newRec);
         }
     }
@@ -63,7 +66,7 @@ public class ProgramController {
     }
 
 
-    public void addBallToVisual(){
+   /* public void addBallToVisual(){
         StackBall newBall = new StackBall(20);
         ballStack.pushInVisual(newBall);
 
@@ -73,6 +76,7 @@ public class ProgramController {
     public void deleteBallFromVisual(){
         ballStack.popVisual();
     }
+    */
 
 
 
