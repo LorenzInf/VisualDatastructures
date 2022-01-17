@@ -22,6 +22,7 @@ public class ProgramController {
     private VisualStack<StackBall> ballStack;
     private VisualStack<Bar> pointBarStack;
     private BarField field;
+    private Bar barOrig;
 
     /**
      * Konstruktor
@@ -35,6 +36,7 @@ public class ProgramController {
         ballStack = new VisualStack<>(viewController);
         pointBarStack = new VisualStack<>(viewController);
         new InputManager(this,viewController);
+        barOrig = new Bar(20,255,0,0);
     }
 
     /**
@@ -43,20 +45,25 @@ public class ProgramController {
      */
     public void startProgram() {
         BarField field = new BarField(viewController);
+
     }
 
     public void addRectangle(){
-        //TODO Stack immer wieder abbauen und dann wieder aufbauen, dann das unterste Objekte nehmen und Farbe verändern
         if(pointBarStack.getCounter() == 11){
             pointBarStack.setCounter(1);
-            Bar newRec = new Bar(20);
+            barOrig.setR((int) (Math.random()*255));
+            barOrig.setG((int) (Math.random()*255));
+            barOrig.setB((int) (Math.random()*255));
+            Bar newRec = new Bar(20,255,0,0);
+            newRec.setR(barOrig.getR());
+            newRec.setG(barOrig.getG());
+            newRec.setB(barOrig.getB());
             pointBarStack.pushInVisual(newRec);
-            newRec.setR((int) (Math.random()*255));
-            newRec.setG((int) (Math.random()*255));
-            newRec.setB((int) (Math.random()*255));
-            System.out.println("Probe");
         }else{
-            Bar newRec = new Bar(20);
+            Bar newRec = new Bar(20,255,0,0);
+            newRec.setR(barOrig.getR());
+            newRec.setG(barOrig.getG());
+            newRec.setB(barOrig.getB());
             pointBarStack.pushInVisual(newRec);
         }
     }
